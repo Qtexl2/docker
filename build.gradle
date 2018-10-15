@@ -1,0 +1,57 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.0.M4'
+		gradleDockerVersion = '1.2'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+		maven { url "https://plugins.gradle.org/m2/" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("se.transmode.gradle:gradle-docker:${gradleDockerVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'docker'
+
+group = 'demonstration'
+version = '0.0.1'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+dependencies {
+	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.12'
+//	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	implementation('org.springframework.boot:spring-boot-starter-websocket')
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+docker {
+	baseImage "java:8"
+}
+
+task buildDocker(type: Docker) {
+	baseImage = 'qtexl2/socket:0.0.1'
+	push = project.hasProperty('push')
+	tag = 'qtexl2/socket'
+	addFile {
+		from jar
+		rename {'app.jar'}
+	}
+	entryPoint(['java', '-Djava.security.egd=file:/dev/./urandom', '-jar', '/app.jar'])
+
+}
+buildDocker.dependsOn(build)

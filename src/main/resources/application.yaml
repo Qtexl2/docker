@@ -1,0 +1,15 @@
+#spring:
+#  jpa:
+#    properties:
+#      hibernate:
+#        dialect: rg.hibernate.dialect.MySQLDialect
+#        temp:
+#          use_jdbc_metadata_defaults: false
+#        ddl-auto: validate
+#  datasource:
+#    username: ${DB_USER}
+#    password: ${DB_PASSWORD}
+#    url: ${DB_URL}
+#    driver-class-name: com.mysql.jdbc.Driver
+#    hikari:
+#      pool-name: socket
