@@ -1,14 +1,15 @@
 package local.demonstration.socket.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
+import javax.persistence.Table;
 
 /**
  * @author ITRex Group
@@ -16,16 +17,20 @@ import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 @Entity
+@Table(name = "message")
 public class Message {
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "message")
     private String message;
+    @Column(name = "chat_id")
     private Long chatId;
-    private Date postDate;
-    private String from;
-    private String to;
+    @Column(name = "from_id")
+    private String fromId;
+    @Column(name = "to_id")
+    private String toId;
 }

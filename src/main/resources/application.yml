@@ -1,0 +1,19 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        ddl-auto: create
+        show_sql: true
+        format_sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    generate-ddl: true
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://db:3306/db?useSSL=false&createDatabaseIfNotExist=true
+    driver-class-name: com.mysql.jdbc.Driver
+server:
+  port: 8080
