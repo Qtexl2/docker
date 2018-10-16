@@ -30,7 +30,7 @@ public class Message {
     @Column(name = "chat_id")
     private Long chatId;
     @Column(name = "from_id")
-    private String fromId;
+    private Long fromId;
     @Column(name = "to_id")
-    private String toId;
+    private Long toId;
 }

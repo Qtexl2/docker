@@ -16,25 +16,25 @@ import java.util.List;
  * @author ITRex Group
  */
 
-@RestController
-@RequestMapping("/")
-public class Hello {
-
-    @Autowired
-    private UserRepository userRepository;
-    @GetMapping
-    public String hello(){
-        return "Hello world!";
-    }
-
-    @GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<User> getUser(){
-        return userRepository.findAll();
-    }
-
-    @PostMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public User createUser(@RequestBody User user){
-        System.out.println(user);
-        return userRepository.save(user);
-    }
-}
+//@RestController
+//@RequestMapping("/")
+//public class Hello {
+//
+//    @Autowired
+//    private UserRepository userRepository;
+//    @GetMapping
+//    public String hello(){
+//        return "Hello world!";
+//    }
+//
+//    @GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public List<User> getUser(){
+//        return userRepository.findAll();
+//    }
+//
+//    @PostMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public User createUser(@RequestBody User user){
+//        System.out.println(user);
+//        return userRepository.save(user);
+//    }
+//}
