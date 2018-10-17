@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
@@ -22,7 +23,7 @@ public class ChatController {
 
     @MessageMapping("/hello")
     @SendTo("/topic/chat")
-    public MessageClass messaging(MessageClass message){
+    public MessageClass messaging(@Payload MessageClass message){
         System.out.println(message);
         Message mess = new Message();
         mess.setChatId(1l);
